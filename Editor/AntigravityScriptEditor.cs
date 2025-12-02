@@ -14,13 +14,14 @@ public class AntigravityScriptEditor : IExternalCodeEditor
     static readonly string[] KnownPaths =
     {
         "/Applications/Antigravity.app",
-        "/Applications/Antigravity.app/Contents/MacOS/Antigravity"
+        "/Applications/Antigravity.app/Contents/MacOS/Antigravity",
+        "C:\\Program Files\\Antigravity\\Antigravity.exe",
     };
 
     static AntigravityScriptEditor()
     {
         CodeEditor.Register(new AntigravityScriptEditor());
-        
+
         string current = EditorPrefs.GetString("kScriptsDefaultApp");
         if (IsAntigravityInstalled() && !current.Contains(EditorName))
         {
@@ -78,7 +79,7 @@ public class AntigravityScriptEditor : IExternalCodeEditor
     public bool OpenProject(string filePath, int line, int column)
     {
         string installation = CodeEditor.CurrentEditorInstallation;
-        
+
         // If no specific file, just open the project folder
         if (string.IsNullOrEmpty(filePath))
         {
@@ -98,7 +99,7 @@ public class AntigravityScriptEditor : IExternalCodeEditor
         try
         {
             Process process = new Process();
-            
+
             // Handle macOS .app bundles specifically
             if (installation.EndsWith(".app") && Application.platform == RuntimePlatform.OSXEditor)
             {
