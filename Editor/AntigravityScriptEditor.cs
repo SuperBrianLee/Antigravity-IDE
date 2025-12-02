@@ -10,7 +10,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public class AntigravityScriptEditor : IExternalCodeEditor
 {
-    const string EditorName = "Antigravity";
+    const string EditorName = "Antigravity-fixed";
     static readonly string[] KnownPaths =
     {
         "/Applications/Antigravity.app",
